@@ -1,0 +1,31 @@
+project_name: kubectl-meta
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: kubectl-meta
+    main: ./cmd/main.go
+    binary: kubectl-meta
+    goos: [linux, darwin]
+    goarch: [amd64, arm64]
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: kubectl-meta
+    builds: [kubectl-meta]
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - LICENSE
+
+checksum:
+  name_template: checksums.txt
+
+release:
+  github:
+    owner: nickytd
+    name: kubectl-meta-plugin

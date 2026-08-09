@@ -1,0 +1,65 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: meta
+spec:
+  version: {{ .TagName }}
+  shortDescription: Show metadata of any Kubernetes resource.
+  homepage: https://github.com/nickytd/kubectl-meta-plugin
+  description: |
+    Displays only the .metadata block of any Kubernetes resource
+    in YAML (default) or JSON format. Supports the same flags as
+    kubectl (--namespace, --context, --kubeconfig) and provides
+    full shell auto-completion for resource types and names.
+    By default, managedFields are hidden; use --with-managed-fields
+    to include them.
+
+    Usage:
+      kubectl meta pod/my-pod
+      kubectl meta deploy/my-deploy -n kube-system
+      kubectl meta pod/my-pod --with-managed-fields
+  platforms:
+  - selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+    {{addURIAndSha "https://github.com/nickytd/kubectl-meta-plugin/releases/download/{{ .TagName }}/kubectl-meta_linux_amd64.tar.gz" .TagName}}
+    files:
+    - from: "./kubectl-meta"
+      to: "."
+    - from: LICENSE
+      to: "."
+    bin: kubectl-meta
+  - selector:
+      matchLabels:
+        os: linux
+        arch: arm64
+    {{addURIAndSha "https://github.com/nickytd/kubectl-meta-plugin/releases/download/{{ .TagName }}/kubectl-meta_linux_arm64.tar.gz" .TagName}}
+    files:
+    - from: "./kubectl-meta"
+      to: "."
+    - from: LICENSE
+      to: "."
+    bin: kubectl-meta
+  - selector:
+      matchLabels:
+        os: darwin
+        arch: amd64
+    {{addURIAndSha "https://github.com/nickytd/kubectl-meta-plugin/releases/download/{{ .TagName }}/kubectl-meta_darwin_amd64.tar.gz" .TagName}}
+    files:
+    - from: "./kubectl-meta"
+      to: "."
+    - from: LICENSE
+      to: "."
+    bin: kubectl-meta
+  - selector:
+      matchLabels:
+        os: darwin
+        arch: arm64
+    {{addURIAndSha "https://github.com/nickytd/kubectl-meta-plugin/releases/download/{{ .TagName }}/kubectl-meta_darwin_arm64.tar.gz" .TagName}}
+    files:
+    - from: "./kubectl-meta"
+      to: "."
+    - from: LICENSE
+      to: "."
+    bin: kubectl-meta
