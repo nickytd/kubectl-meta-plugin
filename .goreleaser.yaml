@@ -1,3 +1,4 @@
+version: 2
 project_name: kubectl-meta
 
 before:
@@ -17,7 +18,7 @@ builds:
 
 archives:
   - id: kubectl-meta
-    builds: [kubectl-meta]
+    ids: [kubectl-meta]
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
     files:
       - LICENSE
