@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Check
+        run: make check
+
+      - name: Build
+        run: CGO_ENABLED=0 go build -o /dev/null ./cmd/main.go
+
+      - name: Vulnerability scan
+        run: make govulncheck
