@@ -15,7 +15,7 @@ GCI_OPT ?= -s standard -s default -s "prefix($(shell go list -m))" --skip-genera
 
 fmt:
 	gofmt -s -w $(ROOT_DIR)
-	goimports -w $(ROOT_DIR)
+	$(GO_TOOL) goimports -w $(ROOT_DIR)
 
 gci:
 	$(GO_TOOL) gci write $(GCI_OPT) $(ROOT_DIR)/cmd $(ROOT_DIR)/pkg
