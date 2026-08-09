@@ -51,7 +51,11 @@ func Run(f util.Factory, streams genericiooptions.IOStreams, outputFmt string, w
 			return result
 		}
 
-		u := info.Object.(*unstructured.Unstructured)
+		u, ok := info.Object.(*unstructured.Unstructured)
+		if !ok {
+			result = fmt.Errorf("unexpected object type %T for %s/%s", info.Object, resourceType, resourceName)
+			return result
+		}
 
 		metadata, found, err := unstructured.NestedMap(u.Object, "metadata")
 		if err != nil {
