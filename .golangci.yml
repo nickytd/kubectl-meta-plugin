@@ -1,0 +1,19 @@
+version: "2"
+
+run:
+  timeout: 5m
+
+linters:
+  enable:
+    - errcheck
+    - govet
+    - staticcheck
+
+formatters:
+  enable:
+    - goimports
+
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/nickytd/kubectl-meta-plugin
