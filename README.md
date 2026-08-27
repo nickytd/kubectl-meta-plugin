@@ -1,11 +1,24 @@
 # kubectl-meta
 
-A [krew](https://krew.sigs.k8s.io/) plugin that displays the `.metadata` block of any Kubernetes resource.
+A kubectl plugin that displays the `.metadata` block of any Kubernetes resource.
 
 ## Installation
 
+Download the binary for your platform from the [GitHub Releases](../../releases) page and place it on your `PATH` as `kubectl-meta`:
+
 ```bash
-kubectl krew install meta
+# Example for Linux amd64
+curl -Lo kubectl-meta https://github.com/nickytd/kubectl-meta-plugin/releases/latest/download/kubectl-meta_linux_amd64
+chmod +x kubectl-meta
+mv kubectl-meta /usr/local/bin/
+```
+
+Or build from source:
+
+```bash
+git clone https://github.com/nickytd/kubectl-meta-plugin.git
+cd kubectl-meta-plugin
+make install   # builds and copies bin/kubectl-meta to $GOPATH/bin
 ```
 
 ## Usage
