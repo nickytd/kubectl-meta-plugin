@@ -18,7 +18,8 @@ Or build from source:
 ```bash
 git clone https://github.com/nickytd/kubectl-meta-plugin.git
 cd kubectl-meta-plugin
-make install   # builds and copies bin/kubectl-meta to $GOPATH/bin
+make build
+cp bin/kubectl-meta /usr/local/bin/
 ```
 
 ## Usage
