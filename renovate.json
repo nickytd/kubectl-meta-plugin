@@ -3,6 +3,9 @@
   "extends": ["config:recommended"],
   "schedule": ["on the first day of the month"],
   "labels": ["dependencies"],
+  "constraints": {
+    "go": "1.27"
+  },
   "packageRules": [
     {
       "matchManagers": ["gomod"],
